@@ -1,0 +1,25 @@
+{
+  "name": "passwordgenerator",
+  "version": "1.0.0",
+  "description": "This is a simple password generation web app which can include mixed case letters, numbers and special characters in password.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taraksh01/passwordGenerator.git"
+  },
+  "keywords": [
+    "password",
+    "password-generator",
+    "taraksh01",
+    "Tarak Shaw"
+  ],
+  "author": "Tarak Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taraksh01/passwordGenerator/issues"
+  },
+  "homepage": "https://github.com/taraksh01/passwordGenerator#readme"
+}
