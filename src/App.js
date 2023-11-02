@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 const App = () => {
   const [length, setLength] = useState(16);
   const [mixedCharacter, setMixedCharacter] = useState(true);
@@ -6,7 +6,7 @@ const App = () => {
   const [includeSpecialCharacters, setIncludesSpecialCharacters] =
     useState(true);
   const [password, setPassword] = useState();
-
+  const passwordRef = useRef(password);
   const generatePassword = useCallback(() => {
     let generatedPassword = "";
     let characters = "abcdefghijklmnopqrstuvwxyz";
@@ -23,6 +23,11 @@ const App = () => {
     setPassword(generatedPassword);
   }, [length, mixedCharacter, includeNumbers, includeSpecialCharacters]);
 
+  const copyPassoword = useCallback(() => {
+    passwordRef.current?.select();
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
+
   useEffect(() => {
     generatePassword();
   }, [length, mixedCharacter, includeNumbers, includeSpecialCharacters]);
@@ -38,9 +43,13 @@ const App = () => {
             type="text"
             value={password}
             readOnly
-            className="w-full rounded-l-lg outline-none text-orange-500 bg-gray-200 p-2"
+            ref={passwordRef}
+            className="w-full rounded-l-lg outline-none text-orange-500 bg-gray-200 p-2 selection:bg-orange-500 selection:text-gray-200"
           />
-          <button className="outline-none bg-orange-500 rounded-r-lg p-2 shrink-0">
+          <button
+            className="outline-none bg-orange-500 rounded-r-lg p-2 shrink-0"
+            onClick={copyPassoword}
+          >
             Copy
           </button>
         </div>
