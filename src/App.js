@@ -5,7 +5,7 @@ const App = () => {
   const [includeNumbers, setIncludesNumbers] = useState(true);
   const [includeSpecialCharacters, setIncludesSpecialCharacters] =
     useState(true);
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
   const passwordRef = useRef(password);
   const generatePassword = useCallback(() => {
     let generatedPassword = "";
