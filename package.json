@@ -2,9 +2,9 @@
   "name": "passwordgenerator",
   "version": "1.0.0",
   "description": "This is a simple password generation web app which can include mixed case letters, numbers and special characters in password.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
