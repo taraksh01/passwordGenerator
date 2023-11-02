@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 const App = () => {
   const [length, setLength] = useState(16);
   const [mixedCharacter, setMixedCharacter] = useState(true);
@@ -7,16 +7,38 @@ const App = () => {
     useState(true);
   const [password, setPassword] = useState();
 
+  const generatePassword = useCallback(() => {
+    let generatedPassword = "";
+    let characters = "abcdefghijklmnopqrstuvwxyz";
+    if (mixedCharacter) characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (includeNumbers) characters += "0123456789";
+    if (setIncludesNumbers) characters += "~!@#$%^&*()-+{}[]/|.,;?=_";
+
+    for (let i = 0; i < length; i++) {
+      generatedPassword += characters.charAt(
+        Math.round(Math.random() * characters.length)
+      );
+    }
+
+    setPassword(generatedPassword);
+  }, [length, mixedCharacter, includeNumbers, includeSpecialCharacters]);
+
+  useEffect(() => {
+    generatePassword();
+  }, [length, mixedCharacter, includeNumbers, includeSpecialCharacters]);
+
   return (
-    <main className="bg-gray-600 text-gray-200 h-screen w-screen">
-      <div className="bg-slate-900 max-w-xl rounded-md mx-auto p-4 ">
-        <h1 className="text-xl">Password Generator</h1>
-        <div className="flex my-4 text-2xl">
+    <main className="bg-gray-500 text-gray-200 h-screen w-screen">
+      <div className="bg-slate-900 max-w-xl rounded-md mx-auto p-4">
+        <h1 className="text-2xl text-orange-500 flex justify-center">
+          Password Generator
+        </h1>
+        <div className="flex my-4 text-xl">
           <input
             type="text"
             value={password}
             readOnly
-            className="w-full rounded-l-lg outline-none text-orange-500 p-2"
+            className="w-full rounded-l-lg outline-none text-orange-500 bg-gray-200 p-2"
           />
           <button className="outline-none bg-orange-500 rounded-r-lg p-2 shrink-0">
             Copy
@@ -27,7 +49,7 @@ const App = () => {
             <input
               type="range"
               min={6}
-              max={50}
+              max={30}
               value={length}
               onChange={(e) => setLength(e.target.value)}
               className="bg-orange-500 cursor-pointer accent-orange-500"
