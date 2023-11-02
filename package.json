@@ -24,5 +24,9 @@
   "homepage": "https://github.com/taraksh01/passwordGenerator#readme",
   "devDependencies": {
     "parcel": "^2.10.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
